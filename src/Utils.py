@@ -6,7 +6,7 @@ from numpy.f2py.auxfuncs import throw_error
 from selenium.webdriver.support.wait import WebDriverWait
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+log.basicConfig(level=log.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 
 
 def wait_for_ajax(driver):
@@ -42,7 +42,7 @@ def get_all_apps_of_category_google(categories, country="DE"):
             try:
                 temp_links = json.loads(temp_links[1][0][2])[0][1][0][28][0]
             except TypeError:
-                logging.warning("Could not get apps for:\nLanguage: " + country + "\nSales Category: " + sales_category + "\nApp Category: " + app_category + "\nContinuing.")
+                log.warning("Could not get apps for:\nLanguage: " + country + "\nSales Category: " + sales_category + "\nApp Category: " + app_category + "\nContinuing.")
                 continue
             temp_links = [link[0][0][0] for link in temp_links]
             links += temp_links

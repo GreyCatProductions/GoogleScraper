@@ -3,13 +3,16 @@ import requests as re
 import json
 import datetime
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def DiGA():
-
     os.makedirs("./data/DiGA/", exist_ok=True)
 
-    with open("token.txt", "r") as f:
-        token = f.read()
+    token = os.getenv("DIGA_KEY")
+    if not token:
+        raise Exception("Failed to load token")
 
     endpoints = ["https://diga.bfarm.de/api/fhir/v2.0/CatalogEntry?_profile=https://fhir.bfarm.de/StructureDefinition/HealthAppCatalogEntry&_count=9999",
                  "https://diga.bfarm.de/api/fhir/v2.0/DeviceDefinition?_profile=https://fhir.bfarm.de/StructureDefinition/HealthApp&_count=9999",
