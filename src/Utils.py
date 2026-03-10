@@ -1,13 +1,11 @@
 import requests
 import json
 import tempfile
-
 from numpy.f2py.auxfuncs import throw_error
 from selenium.webdriver.support.wait import WebDriverWait
-import logging
+from logger import get_logger
 
-log.basicConfig(level=log.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
-
+log = get_logger()
 
 def wait_for_ajax(driver):
     wait = WebDriverWait(driver, 15)
