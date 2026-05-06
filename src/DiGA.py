@@ -1,9 +1,12 @@
 import os
+import logging
 import requests as re
 import json
 import datetime
 import pandas as pd
 from dotenv import load_dotenv
+
+log = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -38,6 +41,10 @@ def DiGA():
 
         r = s.get(endpoint).json()
         links = []
+
+        if "entry" not in r:
+            log.error(f"No 'entry' key in response for endpoint {endpoint_name}: {r}")
+            continue
 
         for entry in r["entry"]:
             links.append(entry["fullUrl"])
